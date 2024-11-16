@@ -31,6 +31,11 @@ while True:
     
     print(f"AI : {response}")
 
+    # Optional: Truncate chat history if it grows too large
+    max_messages = 20  # Keep the last 20 messages + system message
+    if len(chat_history) > max_messages:
+        chat_history = [system_message] + chat_history[-(max_messages - 1):]
+
 print("----- Message History -----")
 # print(chat_history)
 

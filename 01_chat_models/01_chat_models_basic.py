@@ -10,7 +10,7 @@ model = ChatOpenAI(model="gpt-4o-mini")  # Replace with "gpt-4" if you have acce
 
 # Use the invoke method
 try:
-    result = model.invoke("What is 81  divided by 9?")
+    result = model.invoke("What is any nuber divided by 0?")
     print("Full result:", result)
     print("Content Only:", result.content)
 except Exception as e:

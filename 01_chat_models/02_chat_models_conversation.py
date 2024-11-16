@@ -25,3 +25,17 @@ message = [
 result = model.invoke(message)
 print(f"Answer from AI :  {result.content}")
 
+# AIMessages:
+#   Message from an AI
+
+message = [
+    SystemMessage(content="Solve the following math problems"),
+    HumanMessage(content="What is 1024 divided by 8?"),
+    AIMessage(content="1024 divided by 8 is 128,"),
+    HumanMessage(content="What is 10 times 5?"),
+]
+
+# #Invoke the model with messages
+
+result = model.invoke(message)
+print(f"Answer from AI :  {result.content}")

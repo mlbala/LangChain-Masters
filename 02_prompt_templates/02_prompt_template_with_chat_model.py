@@ -28,3 +28,15 @@ prompt = prompt_multiple.invoke({"adjective": "funny", "animal": "panda"})
 
 result = model.invoke(prompt)
 print(result.content)
+
+## Part 3: Prompt with System and Human Messages using tuples
+print("\n ----- Prompt with System and Human Messages with Tuples ----- \n")
+messages = [
+    ("system", "You are a comedian who tells jokes about {topic}"),
+    ("human", "Tell me {joke_count} jokes."),
+]
+
+prompt_template = ChatPromptTemplate.from_messages(messages)
+prompt = prompt_template.invoke({"topic": "Lawyers", "joke_count": 3})
+result = model.invoke(prompt)
+print(result.content)

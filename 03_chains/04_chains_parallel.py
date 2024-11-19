@@ -60,8 +60,22 @@ chain = (
     # | RunnableLambda(lambda x: print("final output", x) or combine_pros_cons(x["branches"]["pros"], x["branches"]["cons"]))
 )
 
-# run the chain
-result = chain.invoke({"product_name" : "MacBook Air M1"})
+# # run the chain
+# result = chain.invoke({"product_name" : "MacBook Air M1"})
 
-# Output
-print(result)
+# # Output
+# print(result)
+
+# List of products to review
+products_to_review = ["Macbook Ai m1 8 GB", "MacBook Pro m3 max", "Iphone 15 pro"]
+
+# Collects reviews for each product
+reviews = {}
+
+for product in products_to_review:
+    result = chain.invoke({"product_name" : product})
+    reviews[product] = result
+
+# output the reviews
+for product, review in reviews.items():
+    print(f"Review for {product} : \n {review} \n")

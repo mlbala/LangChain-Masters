@@ -72,4 +72,4 @@ for entry in topics_and_counts:
 # Output the jokes
 
 for topic, jokes in all_jokes.items():
-    print(f"Jokes about {topic} :\n{jokes}")
+    print(f"Jokes about {topic} : {jokes}")

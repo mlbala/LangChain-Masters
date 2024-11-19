@@ -37,26 +37,26 @@ from langchain_core.messages import HumanMessage
 # print(prompt)
 # print()
 
-# #E Extra Information about Part 3
+# # Extra Information about Part 3
 # ##  
-# messages = [
-#     ("system", "You are a comedian who tells jokes about {topic}."),
-#     HumanMessage(content="Tell me a 3 jokes."),
-# ]
-
-# prompt_template = ChatPromptTemplate.from_messages(messages)
-# prompt = prompt_template.invoke({"topic": "lawyers"})
-# print("\n----- Prompt whith System and Human Messages (tuple) ----- \n")
-# print(prompt)
-# print()
-
-
-# This does NOT work:
 messages = [
     ("system", "You are a comedian who tells jokes about {topic}."),
-    HumanMessage(content="Tell me {joke_count} jokes."),
+    HumanMessage(content="Tell me a 3 jokes."),
 ]
+
 prompt_template = ChatPromptTemplate.from_messages(messages)
-prompt = prompt_template.invoke({"topic": "lawyers", "joke_count": 3})
-print("\n----- Prompt with System and Human Messages (Tuple) -----\n")
+prompt = prompt_template.invoke({"topic": "lawyers"})
+print("\n----- Prompt whith System and Human Messages (tuple) ----- \n")
 print(prompt)
+print()
+
+
+# # This does NOT work:
+# messages = [
+#     ("system", "You are a comedian who tells jokes about {topic}."),
+#     HumanMessage(content="Tell me {joke_count} jokes."),
+# ]
+# prompt_template = ChatPromptTemplate.from_messages(messages)
+# prompt = prompt_template.invoke({"topic": "lawyers", "joke_count": 3})
+# print("\n----- Prompt with System and Human Messages (Tuple) -----\n")
+# print(prompt)

@@ -16,8 +16,8 @@ db = Chroma(persist_directory=persisitent_directory, embedding_function=embeddin
 # define the user's query
 query = "Who is Odysseus' wife?"
 
-# Retrieve relevant documents based on the query
-retriever = db.as_retriever(search_type="similarity_score_threshold", search_kwargs={"k":3, "score_threshold":0.4},)
+# Ratetrieve relevant documents based on the query
+retriever = db.as_retriever(search_type="similarity_score_threshold", search_kwargs={"k":3, "score_threshold":0.9},)
 relevant_docs = retriever.invoke(query)
 
 # Display the relevant result with metadata

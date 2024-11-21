@@ -1,3 +1,4 @@
+langchain
 langchain-openai
 python-dotenv
 langchain-community
@@ -5,7 +6,7 @@ langchain-anthropic
 langchain-google-genai
 langchain-google-firestore
 firestore
-chromadb
+langchain-chroma
 tiktoken
 sentence-transformers
 bs4

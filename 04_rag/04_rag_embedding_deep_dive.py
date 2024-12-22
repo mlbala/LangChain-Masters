@@ -1,5 +1,6 @@
-import os
+# This script demonstrates how to use different embedding models to create a vector store and query it.
 
+import os
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -9,7 +10,6 @@ from langchain_openai import OpenAIEmbeddings
 
 from dotenv import load_dotenv
 
-# Load environemnt variable
 load_dotenv()
 
 # define the directory containing the text file and the persistent directory
@@ -38,13 +38,9 @@ print(f"Sample chunk:\n{docs[0].page_content}\n")
 def create_vector_store(docs, embeddings, store_name):
     persistent_directory =  os.path.join(db_dir, store_name)
     if not os.path.exists(persistent_directory):
-
         print(f"\n --- Creating vector store {store_name} --- ")
-
         Chroma.from_documents(docs, embeddings, persist_directory=persistent_directory)
-
         print(f" --- Fineshed creating vector store {store_name} --- ")
-
     else:
         print(f"Vector store {store_name} already exists. No need to initialize.")
 
@@ -59,6 +55,7 @@ openai_embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 create_vector_store(docs, openai_embeddings, "chroma_db_openai")
 
 
+
 # 2. Hugging Face Transformers
 # Uses models from the Hugging Face library.
 # Ideal for leveraging a wide variety of models for different tasks.
@@ -69,13 +66,13 @@ huggingface_embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers
 create_vector_store(docs,huggingface_embeddings, "chroma_db_huggingface")
 print("Embedding demonstrations for OpenAI and Hugging Face completed.")
 
+
+
 # Function to query a vector store
 def query_vector_store(store_name, query, embedding_function):
     persistent_directory = os.path.join(db_dir, store_name)
-
     if os.path.exists(persistent_directory):
         print(f"\n --- Querying the Vector Store {store_name} ----")
-
         db = Chroma(
             persist_directory=persistent_directory,
             embedding_function=embedding_function
@@ -85,9 +82,7 @@ def query_vector_store(store_name, query, embedding_function):
             search_type="similarity_score_threshold",
             search_kwargs = {"k":3, "score_threshold":0.1},
         )
-
         relevant_docs = retriever.invoke(query)
-
         # Display the relevant result with metadata
         print(f"\n --- Relevant Documents for {store_name} --- ")
         for i, doc in enumerate(relevant_docs, 1):
@@ -98,7 +93,6 @@ def query_vector_store(store_name, query, embedding_function):
         print(f"Vector store {store_name}  does not exist.")
 
 
-
 # define the user's query
 query = "Who is Odysseus' wife?."
 
@@ -106,5 +100,4 @@ query = "Who is Odysseus' wife?."
 # Query each vector store
 query_vector_store("chroma_db_openai", query, openai_embeddings)
 query_vector_store("chroma_db_huggingface", query, huggingface_embeddings)
-
 print("Querying demonstrations completed.")

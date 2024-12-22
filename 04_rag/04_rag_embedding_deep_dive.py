@@ -7,6 +7,11 @@ from langchain_community.document_loaders import TextLoader
 from langchain_chroma import Chroma 
 from langchain_openai import OpenAIEmbeddings
 
+from dotenv import load_dotenv
+
+# Load environemnt variable
+load_dotenv()
+
 # define the directory containing the text file and the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir,"data","odyssey.txt")

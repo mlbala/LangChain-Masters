@@ -4,6 +4,11 @@ from langchain_community.document_loaders import TextLoader
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
+from dotenv import load_dotenv
+
+# Load environemnt variable
+load_dotenv()
+
 # Define the directory containing the text files and the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(current_dir, "data")

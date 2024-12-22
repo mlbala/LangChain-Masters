@@ -5,9 +5,10 @@ from langchain_community.document_loaders import TextLoader
 # from langchain_community.vectorstores import Chroma
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
 
 # Load environemnt variable
-# load_dotenv()
+load_dotenv()
 
 # Define the directory containing the text file and the persistent directoy
 current_dir = os.path.dirname(os.path.abspath(__file__))

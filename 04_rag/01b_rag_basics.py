@@ -3,6 +3,11 @@ import os
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
+
+from dotenv import load_dotenv
+
+# Load environemnt variable
+load_dotenv()
 # define the persistent directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 persisitent_directory = os.path.join(current_dir, "db", "chroma_db")

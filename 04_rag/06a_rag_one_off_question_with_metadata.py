@@ -1,3 +1,5 @@
+
+
 import os
 
 from dotenv import load_dotenv
@@ -23,11 +25,10 @@ db = Chroma(persist_directory=persistent_directory,
 # Define the user's question
 query = "How can I learn more about LangChain?"
 
-
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(
     search_type="similarity",
-    search_kwargs={"k": 3},
+    search_kwargs={"k": 3},  # Retrieve top 3 documents
 )
 relevant_docs = retriever.invoke(query)
 
@@ -57,9 +58,22 @@ messages = [
 # Invoke the model with the combined input
 result = model.invoke(messages)
 
-# Display the full result and content only
-print("\n--- Generated Response ---")
-# print("Full result:")
-# print(result)
-print("Content only:")
-print(result.content)
+# Process and display the result
+response_content = result.content.strip()
+
+if response_content.lower() == "i'm not sure":
+    # If the answer is not found
+    print("\n--- Generated Response ---")
+    print("Content only:")
+    print(response_content)
+else:
+    # Include source document metadata if relevant info is found
+    unique_sources = list(set(doc.metadata.get('source', 'Unknown Source') for doc in relevant_docs))
+    source_info = "\n\n--- Source Documents ---\n"
+    for source in unique_sources:
+        source_info += f"{source}\n"
+
+    print("\n--- Generated Response ---")
+    print("Content only:")
+    print(response_content)
+    print(source_info)

@@ -80,3 +80,5 @@ if new_documents:
     print("\n--- Finished creating and persisting vector store ---")
 else:
     print("No new documents to process.")
+
+

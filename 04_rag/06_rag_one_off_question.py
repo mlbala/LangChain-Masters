@@ -21,14 +21,22 @@ db = Chroma(persist_directory=persistent_directory,
             embedding_function=embeddings)
 
 # Define the user's question
-query = "How can I learn more about LangChain?"
+query = "How can I learn more about SQL?"
 
 
 # Retrieve relevant documents based on the query
 retriever = db.as_retriever(
     search_type="similarity",
-    search_kwargs={"k": 3},
+    search_kwargs={"k": 1},
 )
+
+
+# retriever = db.as_retriever(
+#         search_type="similarity_score_threshold",
+#         search_kwargs={'score_threshold': 0.5}
+#     )
+
+
 relevant_docs = retriever.invoke(query)
 
 # Display the relevant results with metadata
@@ -63,3 +71,5 @@ print("\n--- Generated Response ---")
 # print(result)
 print("Content only:")
 print(result.content)
+
+
